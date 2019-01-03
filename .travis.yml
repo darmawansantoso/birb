@@ -10,9 +10,15 @@ install:
       git clone https://github.com/flutter/flutter.git
     fi
   - ./flutter/bin/flutter doctor
+matrix:
+  include:
+    - name: Test
+      env: COMMAND=test
+    - name: Analyze
+      env: COMMAND=analyze
 script:
   - cd app
-  - ../flutter/bin/flutter test
+  - ./flutter/bin/flutter $COMMAND
 cache:
   directories:
     - flutter
